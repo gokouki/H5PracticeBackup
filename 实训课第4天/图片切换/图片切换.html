@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片切块</title>
+    <style>
+        html,body{
+            height: 100%;
+            margin: 0;
+            background-color: gray;
+            padding-top: 10px;
+        }
+        main{
+            width: 950px;
+            height: 600px;
+            background-image: url(1.jpg);
+            border-radius: 10px;
+            border: 5px solid white;
+            margin:0 auto;
+        }
+        div{
+            width: 50px;
+            height: 50px;
+            border: 2px solid #919191;
+            box-sizing: border-box;
+            float: left;
+            background-color: #eee;
+        }
+    
+    
+    
+    </style>
+</head>
+<body>
+    <!-- 定义主要内容 -->
+    <main id="box"> 
+  
+    </main>
+    <script>
+        // 通过id属性找到匹配元素
+        var box = document.getElementById('box');
+        for(var i = 0;i<228;i++){  
+            var item = document.createElement('div');
+            box.appendChild(item);
+
+            item.onmouseover = function(){
+                // transparent为不设置背景颜色 也就是透明 
+                this.style.backgroundColor = 'transparent';
+            }
+        }
+    </script>
+</body>
+</html>

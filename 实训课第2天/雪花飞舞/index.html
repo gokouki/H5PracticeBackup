@@ -1,0 +1,74 @@
+<!-- 告知浏览器当前文档为html文档 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>雪花飘飘</title>
+    <style>
+        /* 页面如果有<!DOCTYPE html>这句话,就必须把html的高度设置为100% */
+        html{
+            height: 100%;
+        }
+        body{
+            margin:0;
+            height: 100%;
+            background-image: url(images/timg.jpg);
+            /* 当容器内的元素溢出时怎么操作 */
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 定义一个脚本 -->
+    <script>
+        show();
+        // 创建一个雪花出现的函数
+        function show(){
+            // 创建一个img标签来展示雪花图片
+            // document.createElement()创建一个元素节点
+            var flake = document.createElement('img');
+            // 将img元素放置到body里面去
+            document.body.appendChild(flake);
+            // 设置img元素的样式
+            flake.src = 'images/flake.png';
+            // random函数获取0~1之间的随机数
+            flake.style.transform = 'scale('+ Math.random() /2 +')';
+            // 获取屏幕可视区域的宽度
+            var w = document.documentElement.clientWidth;
+            // 获取屏幕可视区域的高度
+            var h = document.documentElement.clientHeight;
+            // 设置img元素的定位方式
+            flake.style.position = 'absolute';
+
+            // 获取x轴的随机数
+            var left = w * Math.random();
+            // 获取y轴的随机数
+            var top = h * Math.random();
+            
+            //  将随机值赋予img标签
+            flake.style.left = left + 'px';
+            flake.style.top = top + 'px';
+            // 创建一个雪花下落的函数
+            function down(){
+                left = left +2;
+                top = top +2;
+                if(left > w){
+                    left = -100;
+                }
+                if(top >h){
+                    top = -100;
+                }
+                flake.style.left = left + 'px';
+                flake.style.top  = top + 'px';
+
+            }
+            //创建一个计数器,表示每隔几毫秒执行一次函数
+            setInterval(down,10);
+        } 
+        for(var i = 0;i<200;i++){
+            show();
+        }
+    </script>
+</body>
+</html>

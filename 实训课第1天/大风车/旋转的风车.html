@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>大风车转啊转</title>
+        <!-- 定义一个样式表 -->
+        <style>
+            body{
+                /*设置元素的外边距，它是一个综合属性
+                 margin-left 
+                 margin-right
+                 margin-top
+                 margin-bottom
+                */
+                margin: 0;
+                padding-top: 50px;
+            }
+            div{
+                height: 600px;
+                width: 900px;
+                /* 1px表示边框的宽度 solid表示边框的样式，这里代表实线 */
+                border: 1px solid green;
+                background-image:url(1.png);
+                /* 设置背景图片的大小 参数一表示x轴的大小 参数二表示y轴的大小   */
+                background-size: 100% 100%;
+                /* div默认宽度是整个屏幕 参数一代表上下边距 参数二代表左右 左右设置自动就可以实现居中效果 */
+                margin:0 auto;
+                /* 根据自己当前位置做调整,是给img元素坐参照物用的 */
+                position: relative;
+            }
+            /* 找到div元素里面的第n个元素 */
+            div img:nth-child(1){
+                width:320px;
+                height:320px;
+                /* 绝对定位,根据参照物位置做调整 */
+                position: absolute;
+                /* 距离参照物左边的距离 */
+                left:100px;
+                /* 距离参照物上边的距离 */
+                top:115px;
+                /* 定义动画名字 */
+                animation-name: rotate;
+                /* 定义完成一个动画周期所需要的时间 */
+                animation-duration: 2s;
+                /* 定义动画完成n个周期 */
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+
+            }
+            div img:nth-child(2){
+                width:120px;
+                height:120px;
+                position: absolute;
+                /* 距离参照物左边的距离 */
+                left:405px;
+                /* 距离参照物上边的距离 */
+                top:375px;
+                animation: rotate 2s infinite linear;
+            }
+            div img:nth-child(3){
+                width:220px;
+                height:220px;
+                position: absolute;
+                /* 距离参照物左边的距离 */
+                left:525px;
+                /* 距离参照物上边的距离 */
+                top:270px;
+                animation: rotate 2s infinite linear;
+            }
+            div img:nth-child(4){
+                width:100px;
+                height:100px;
+                position: absolute;
+                /* 距离参照物左边的距离 */
+                left:734px;
+                /* 距离参照物上边的距离 */
+                top:54px;
+            }
+            div img:nth-child(5){
+                width:185px;
+                height:185px;
+                position: absolute;
+                /* 距离参照物左边的距离 */
+                left:691px;
+                /* 距离参照物上边的距离 */
+                top:12px;
+                animation: rotate2 3s infinite linear;
+            }
+            /* 定义一个动画帧 rotate是动画帧的名字 然后还要指明动画开始前的状态和动画结束时的状态*/
+            @keyframes rotate{
+                0%{
+                    /* 用rotate函数定义旋转的角度 */
+                    transform: rotate(0);
+                }             
+                100%{
+                    transform: rotate(360deg);
+                }
+
+            }
+            @keyframes rotate2{
+                0%{
+                    /* 用rotate函数定义旋转的角度 */
+                    transform: rotate(0);
+                }             
+                100%{
+                    transform: rotate(-360deg);
+                }
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <!-- div定义一个区域 -->
+        <div>
+            <!-- alt表示当图片加载不成功时,显示的文字信息 -->
+            <img src="2.png" alt="风车叶子">
+            <img src="2.png" alt="风车叶子">
+            <img src="2.png" alt="风车叶子">
+            <img src="sun1.png" alt="太阳">
+            <img src="sun2.png" alt="光线">
+
+        </div>
+
+
+    </body>
+
+
+
+</html>

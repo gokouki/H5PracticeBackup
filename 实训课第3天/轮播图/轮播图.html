@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        /* 逗号表示和的意思 */
+        html,body{
+            /* 页面初始化设置 */
+            margin: 0;
+            height: 100%;
+            background-color: #999;
+            padding-top: 20px;
+        }
+        main{
+            width:717px;
+            height:538px;
+            border: 10px solid white;
+            margin:0 auto;
+            /* 设置边框弧度，最大值为50% */
+            border-radius: 10px;
+            position: relative;
+        }
+        .banner{
+            width: 100%;
+            height: 100%;
+        }
+        .left-btn,.right-btn{
+            /* 将元素改变成行内块元素 span是行元素不能设置宽高 行内才可以*/
+            display: inline-block;
+            width:50px;
+            height:50px;
+            border:5px solid #bfbfbf;
+            border-radius: 20px;
+            position:absolute;
+            /* 设置透明度,值为0-1,0表示元素看不见,1为不透明 */
+            opacity: 0.5;
+        }
+        span img{
+            width:100%;
+            height: 100%;
+        }
+        .left-btn{
+            left:10px;
+            top:calc( (100% - 50px) /2 );
+        }
+        .right-btn{
+            right:10px;
+            top:calc( (100% - 50px) /2 );
+        }
+        /* 修改列表元素的初始化样式 让初始化样式无效 */
+        ul,li{
+            margin: 0;/*外边距*/
+            padding: 0;/*内边距*/
+            /* 设置列表项的样式 none为不使用样式*/
+            list-style: none;
+        }
+        li{
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;/*50%为圆*/
+            /* float 浮动布局,将元素左浮动 变成一排 */
+            float: left;
+            /* 让每个点之间有间隔 */
+            margin-left: 5px;
+            opacity: 0.3;
+        }
+        ul{
+            position:absolute;
+            bottom:20px; 
+            left:calc( (100% - 100px) /2 );
+            
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <img class="banner" src="1.jpg" alt="轮播图图片">
+        <!-- 定义一个行元素 -->
+        <span class="left-btn">
+            <img src="back.png" alt="左箭头">
+        </span>
+        <span class="right-btn">
+            <img src="more.png" alt="右箭头">
+        </span>
+        <!-- ul 定义无序列表 -->
+        <ul>
+            <!-- li表示定义列表项 -->
+            <!-- data-*自定义属性 -->
+            <li data-num=1></li>
+            <li data-num=2></li>
+            <li data-num=3></li>
+            <li data-num=4></li>
+            <li data-num=5></li>
+
+        </ul>
+        <script>
+            // 获取页面上轮播图元素
+            var banner = document.querySelector('.banner');
+            // 设置一个全局变量,用来切换图片
+            var num =0;
+            // 创建一个计数器的全局变量
+            var timer;
+            // 创建一个函数,用来展示图片
+            function bannerShow(){
+                num += 1;
+                if(num > 5) {
+                    num = 1;
+                }
+                banner.src = num + '.jpg';
+            }
+            // 用计数器每隔3秒执行一次图片切换
+            timer = setInterval(bannerShow,1000);
+            // 获取左箭头按钮
+            var leftBtn = document.querySelector('.left-btn');
+            // 获取右箭头按钮
+            var rightBtn = document.querySelector('.right-btn');
+
+            // onmouseover 鼠标移动到元素上时触发事件
+            leftBtn.onmouseover = function(){
+                this.style.opacity = 1;
+                clearInterval(timer);
+
+            }
+
+            leftBtn.onmouseout = function(){
+                this.style.opacity = 0.3;
+                timer = setInterval(bannerShow,1000);
+            }
+
+            leftBtn.onclick = function(){
+                num -= 1;
+                if(num < 1){
+                    num=5;
+                }
+                banner.src = num + '.jpg';
+            }
+
+            rightBtn.onmouseover = function(){
+                this.style.opacity = 1;
+                clearInterval(timer);
+
+            }
+            
+            rightBtn.onmouseout = function(){
+                this.style.opacity = 0.3;
+                timer = setInterval(bannerShow,1000);
+            }
+
+            rightBtn.onclick = function(){
+                num += 1;
+                if(num > 5){
+                    num=1;
+                }
+                banner.src = num + '.jpg';
+            }
+            // 获取页面上所有的li标签
+            var list = document.querySelectorAll('li');
+            // 通过for循环的方式为每个li元素添加事件操作
+            for(var i = 0;i<list.length;i++){
+              list[i].onmouseover = function(){
+                clearInterval(timer);
+                //   this 指向当前元素
+                this.style.opacity = 1;
+                // 将当前移动到的元素内的自定义属性赋值给num变量
+                num = this.dataset.num;
+                banner.src = num + '.jpg';
+              }
+              list[i].onmouseout = function(){
+                  this.style.opacity = 0.3;
+                  timer = setInterval(bannerShow,1500);
+              }
+            }
+        </script>
+    </main>
+</body>
+</html>

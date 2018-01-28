@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>天气预报</title>
+    <style>
+        html,body{
+            font-family: '宋体';
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(rgb(13, 104, 188),rgb(112, 171, 223));
+            /* 谷歌浏览器适配 没加这句话用谷歌没效果 */
+            background: -webkit-gradient(rgb(13, 104, 188),rgb(112, 171, 223));
+            overflow: hidden;
+        }
+        /* 消除h1跟p标签默认的外边距 */
+        h1,p{
+            margin: 0;
+        }
+        .xiamen{
+            font-size: 22px;
+            color: #fff;
+            text-align: center;
+            /* 设置元素上内边距 */
+            padding-top: 20px;
+        }
+        .tianqi-icon{
+            /* 将元素转化成块元素 */
+            display: block;
+            width: 110px;
+            margin:20px auto;
+        }
+        .degree{
+            font-size: 28px;
+            color: #fff;
+            text-align: center;
+        }
+        .top-content p{
+            margin-bottom: 5px;
+        }
+        .degree img{
+            width: 20px;
+            position: relative;             
+            top: -8px;
+            left: -6px;
+
+        }
+        .degree span{
+            margin: 0 5px;
+            position: relative;
+            top:10px;
+        }
+        .weather{
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+        }
+        .wind{
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+        }
+        .temperature{
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+        }
+        .temperature img{
+            position: relative;
+            width: 10px;
+            top:-2px;
+        }
+
+        /* 下半部分区域 */
+        .bottom-content p{
+            margin-bottom: 5px;
+            padding-top: 40px;
+        }
+        .item{
+            float: left;
+            width: 33.3333333333%;
+            box-sizing: border-box;
+        }
+        .item:nth-child(2){
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+        }
+        
+        .tianqi-icon2{
+            display: block;
+            width: 80px;
+            margin: 0 auto;
+        }  
+        .degree2{
+            font-size: 22px;
+            color: #fff;
+            text-align: center;
+        } 
+        .degree2 img{
+            width: 16px;
+            position: relative;;
+            top: -6px;
+            left: 2px;
+        }
+        .degree2 span{
+            position: relative;
+            top:8px;
+            margin: 0 5px;
+            
+        }
+        .weather2{
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+        }
+        .wind2{
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+        }
+        .temperature2{
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+        }
+        .temperature2 img{
+            width: 8px;
+            position: relative;
+            top: -3px;
+            left: -3px;
+            
+        }
+    </style>
+</head>
+<body>
+    <section class="top-content">
+        <h1 class="xiamen">厦门市</h1>
+        <img class="tianqi-icon" src="images/days/duoyun.png" alt="天气图片">
+        <!-- b标签定义加粗字体 -->
+        <p class="degree"><b>12～20 <img src="images/sheshidu.png" alt="摄氏度图片"></b></p>
+        <p class="weather">多云</p>
+        <p class="wind">微风</p>
+        <p class="temperature">实时温度:13 <span><img src="images/sheshidu.png" alt="摄氏度图片">,空气指数60,超级良好</span></p>;
+    </section>   
+    <section class="bottom-content">
+            <div class="item">
+                    <img class="tianqi-icon2" src="images/days/qing.png" alt="天气图片">
+                    <!-- b标签定义加粗字体 -->
+                    <p class="degree2"><b>15～22 <img src="images/sheshidu.png" alt="摄氏度图片"></b></p>
+                    <p class="weather2">晴天</p>
+                    <p class="wind2">微风</p>
+                    <p class="temperature2">实时温度:17 <span><img src="images/sheshidu.png" alt="摄氏度图片">,空气指数60,超级良好</span></p>;        
+            </div>
+            <div class="item">
+                    <img class="tianqi-icon2" src="images/days/tstorm3.png" alt="天气图片">
+                    <!-- b标签定义加粗字体 -->
+                    <p class="degree2"><b>8～14 <img src="images/sheshidu.png" alt="摄氏度图片"></b></p>
+                    <p class="weather2">雷阵雨</p>
+                    <p class="wind2">大风</p>
+                    <p class="temperature2">实时温度:10 <span><img src="images/sheshidu.png" alt="摄氏度图片">,空气指数60,超级良好</span></p>;        
+            </div>
+            <div class="item">
+                    <img class="tianqi-icon2" src="images/days/xiaoyu.png" alt="天气图片">
+                    <!-- b标签定义加粗字体 -->
+                    <p class="degree2"><b>12～17 <img src="images/sheshidu.png" alt="摄氏度图片"></b></p>
+                    <p class="weather2">小雨</p>
+                    <p class="wind2">五风</p>
+                    <p class="temperature2">实时温度:12 <span><img src="images/sheshidu.png" alt="摄氏度图片">,空气指数60,超级良好</span></p>;        
+            </div>
+    </section>
+    
+</body>
+</html>

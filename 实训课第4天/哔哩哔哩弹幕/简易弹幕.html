@@ -1,0 +1,241 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>简易弹幕</title>
+        <style>
+            html,body{
+                margin: 0;
+                height: 100%;
+                padding-top: 20px;
+                background-color: #f6f9fa;
+            }
+            table{
+                width: 1000px;
+                height: 550px;
+                margin: 0 auto;
+                /* 合并表格的边框线 */
+                border-collapse: collapse;
+                background-color: #fff;
+                border: 1px solid #e5e9ef;
+                box-shadow: 2px 2px 2px #e5e9ef;
+
+            }
+            .view{
+                width: 650px;
+                height: 450px;
+                position: relative;
+                /* 超出视图区域就不要了 截掉                */
+                overflow: hidden;
+            }
+            .text{
+                /* 设置元素的垂直对齐方式 */
+                vertical-align: top;
+            }
+            ol,li{
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                color: #99a2aa;
+            }
+            li{
+                float: left;
+                height: 35px;
+                font-size: 12px;
+                box-sizing: border-box;
+                /* 文本水平居中 */
+                text-align: center;
+                /* 设置行高 */
+                line-height: 35px;
+                border-bottom: 1px solid #e5e9ef;
+
+            }
+            ol li:nth-child(2){
+                width: 60%;
+                border-left: 1px solid #e5e9ef;
+                border-right: 1px solid #e5e9ef;
+                
+            }
+            /* 选中ol 奇数的li */
+            ol li:nth-child(2n + 1){
+                width: 20%;
+               
+            }
+            .clear{
+                /* 清除左右两侧的浮动 */
+                clear: both;
+            }
+            .info{
+                margin-top: 5px;
+            }
+            .info span{
+                /* 将元素转换成行内块元素 */
+                display: inline-block;
+                height: 24px;
+                font-size: 14px;
+                /* color: blue; */
+                line-height: 24px;
+                text-align: center;
+            }
+            .info span:nth-child(2){
+                width: 60%;
+                overflow: hidden;
+                vertical-align: middle;
+            }
+            .info span:nth-child(2n + 1){
+                width: 20%;
+            }
+            input{
+                padding-left: 10px;
+                width: 350px;
+                height: 30px;
+                border: 2px solid #999;
+                border-radius: 10px;
+                /*  设置边框阴影 
+                    参数一 x轴的偏移量 
+                    参数二 y轴的偏移量 
+                    参数三阴影的模糊程度 
+                    参数四 阴影的颜色 
+                */
+                box-shadow: 2px 2px 2px #fff;
+            }
+            button{
+                width: 70px;
+                height: 35px;
+                border: 0;
+                background-color: #ff9024;
+                color: #fff;
+                font-size: 18px; 
+                border-radius: 10px;
+                position: relative;
+                top: 1px;
+            }
+            .content{
+                text-align: center;
+            }
+            .danmu{
+                font-size: 26px;
+                /* 设置字体粗细 bold为粗 */
+                font-weight: bold;
+                color:black;
+                position:absolute;
+            }
+            .user-content{
+                height: 500px;
+                /* 超过的部分通过滚动条 */
+                overflow: scroll;
+                color: #99a2aa;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- 定义一个表格 -->
+        <table border="border">
+            <!-- 定义表格的行 -->
+            <tr>
+                <!-- 定义表格中的单元格 -->
+                <td class="view">
+                    <iframe height=450 width=650z src='http://player.youku.com/embed/XMzE0ODM1ODg1Ng==' frameborder=0 'allowfullscreen'></iframe>
+                </td>
+                <!-- 表示合并多少行 -->
+                <td class="text" rowspan="2">
+                    <!-- 定义有序列表 -->
+                    <ol>
+                        <li>时间</li>
+                        <li>内容</li>
+                        <li>日期</li>
+                        <div class="clear"></div>
+                    </ol>
+                    <div class="user-content"> 
+                        <p class="info"><span>16:52</span><span>这是一条弹幕</span><span>12/20</span></p>
+                    </div>
+                </td>
+            </tr>
+       h     <tr>   
+                <td class="content">
+                    <!-- 定义一个可输入的表单控件 -->
+                    <input type="text">
+                    <!-- 定义一个按钮 -->
+                    <button>发射</button>
+
+                </td>
+            </tr>
+
+        </table>
+        <!-- 引入jquery插件 -->
+        <script src="jquery.js"></script>
+        <!-- 该插件是基于jq的 所以要放jq下面 顺序很重要 -->
+        <script src="layer/layer.js"></script>
+        <script>
+                var num = 0;
+                // 点击发射按钮触发点击事件
+                $('button').click(function(){
+                    // 获取文本控件的value值
+                    var text = $('input').val()
+                    if(text != ''){
+                        var str = text.slice(0,20);
+                        go(text,str);
+                    }else{
+                        layer.tips('写点什么吧,朋友!!!', 'input', {
+                        //弹出样式存在的位置和颜色
+                        tips: [1, '#3595CC'],
+                        // 弹出样式经过n毫秒后消失
+                        time: 4000
+                        })
+                    }
+ 
+                })
+                // go('我们十分的不一样!!!不一样!!不一样!!')
+                //创建一个弹幕划过的函数
+                function go(text,str1){
+                    num += 1;
+                    // 创建一个标签来存放弹幕
+                    var p = '<p class="danmu" data-num=' + num + '>' + text + '</p>';
+                    $('.view').append(p);
+                    // 重新找到页面上的元素
+                    var ele = $('[data-num=' + num + ']');
+                    // 获取视图区域的宽度跟高度
+                    var w = $('.view').width();
+                    var h = $('.view').height();
+
+                    //获取一个随机的距离顶部的距离
+                    var top = Math.random()*h - ele.height() - 50;
+                    if(top < 0){
+                        top = 0;
+                    }
+                    // 设置弹幕元素的样式
+                    ele.css('width',ele.width() + 50)
+                    ele.css('top',top);
+                    ele.css('left',660);
+                    // 创建3个颜色变量
+                    // toFixed(0) 保留n位小数
+                    var r = (10 * Math.random()).toFixed(0);
+                    var g = (10 * Math.random()).toFixed(0);
+                    var b = (10 * Math.random()).toFixed(0);
+
+                    ele.css('color','#' + r + g + b);
+    
+                    // 实现弹幕划过的动画
+                    ele.animate({
+                       left:-1*(ele.width() + 50) 
+                    },3000,function(){
+                    //获取当前的时间
+                    var h = new Date().getHours();
+                    var m = new Date().getMinutes();
+                    // 月份为0~11表示,0表示1月,11表示12月
+                    var y = new Date().getMonth()+1;
+                    var r = new Date().getDate();
+                    var str = '<p class="info"><span>'+ h +':' + m + '</span><span>'+ str1 + "..." + '</span><span>'+ y + '/'+ r +'</span><span></p>';
+                    // 将弹幕信息展示在弹幕区
+                    $('.user-content').append(str);
+                    // 将弹幕元素删除
+                    ele.remove();
+
+                })
+        }
+        </script>
+    </body>
+    </html> 

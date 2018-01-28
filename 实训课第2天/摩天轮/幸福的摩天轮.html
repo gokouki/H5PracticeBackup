@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>摩天轮转啊转</title>
+        <!-- 定义一个样式表 -->
+        <style>
+           
+            body{
+                margin: 0;
+                padding-top: 10px;
+                background-image: url(images/timg.jpg);
+                }
+            header{
+                /* text-align 设置元素里面内容的水平对齐方式*/
+                text-align: center;
+            }
+            /* 使用.class名字找到匹配的元素 */
+            .logo{
+                height: 160px;
+            }
+            
+            div.jiazi{
+                width:250px;
+                height: 400px;
+                margin: 0px auto;
+                /* 相对于原来的位置做改变 */
+                position: relative;
+                top:-405px;
+                left:-60px;
+            }
+            div.lunzi{
+                height: 800px;
+                width: 800px;
+                margin:0px auto;
+                background-image: url(images/fsw.png);
+                background-size:100% 100%;
+                animation-name: rotate;
+                /* 定义完成一个动画周期所需要的时间 */
+                animation-duration: 10s;
+                /* 定义动画完成n个周期 */
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                position: relative;       
+            }
+            section{
+                /* border: 1px solid black; */
+                position: absolute;
+                /* 定义2D */
+                transform-origin: center top;
+                animation: rotate2 10s infinite linear;
+            }
+            section img:nth-child(1){
+                height: 95px;
+                
+                
+            }
+            section img:nth-child(2){
+                height: 150px;
+                position: absolute;
+                top:69px;
+                left: -34px;
+            }
+            div.lunzi section:nth-child(1){
+                top:398px;
+                left:9px;
+            }
+            div.lunzi section:nth-child(2){
+                top:765px;
+                left:382px;
+            }
+            div.lunzi section:nth-child(3){
+                top:534px;
+                left:722px;
+            }
+            /* 定义一个动画帧 rotate是动画帧的名字 然后还要指明动画开始前的状态和动画结束时的状态*/
+            @keyframes rotate{
+                0%{
+                    /* 用rotate函数定义旋转的角度 */
+                    transform: rotate(0);
+                }             
+                100%{
+                    transform: rotate(360deg);
+                }
+
+            }
+            @keyframes rotate2{
+                0%{
+                    /* 用rotate函数定义旋转的角度 */
+                    transform: rotate(0);
+                }             
+                100%{
+                    transform: rotate(-360deg);
+                } 
+
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <!-- 定义文章页头 包括标题 LOGO 导航栏 -->
+        <header>
+            <img class="logo" src="images/big-title.png" alt="招牌">                                                                                                                                                                                                                                                                                                   
+        </header>
+        <main>
+             <!-- div定义一个区域 --> 
+            <div class='lunzi'>
+                <!-- alt表示当图片加载不成功时,显示的文字信息 -->
+                <section>
+                    <img src="images/bracketsmall.png" alt="">
+                    <img src="images/boy.png" alt="">
+                </section>
+                <section>
+                    <img src="images/bracketsmall.png" alt="">
+                    <img src="images/dog.png" alt="">
+                </section>
+                <section>
+                    <img src="images/bracketsmall.png" alt="">
+                    <img src="images/girl.png" alt="">
+                </section>
+            </div>
+            <div class="jiazi">
+                <img src="images/bracket.png" alt="摩天轮架子">
+            </div>
+        </main>
+       
+
+
+    </body>
+
+
+
+</html>
